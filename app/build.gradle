@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '25.0.0'
+
+    signingConfigs {
+        releasePRO {
+            keyAlias 'caralarmguard'
+            keyPassword 'caronte'
+            storeFile file('/home/gianluca/Documenti/Progetti/Android-Trainer/Market/apk/keystore')
+            storePassword 'caronte'
+        }
+        config {
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.glm.caralarm"
+        minSdkVersion 9
+        targetSdkVersion 23
+        versionCode 30
+        versionName "2.10"
+
+        archivesBaseName = "CarAlarmGuard-$versionName"
+        signingConfig signingConfigs.releasePRO
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+}
